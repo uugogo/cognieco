@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>已发稿</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/source.css" rel="stylesheet">
+    <link href="../static/css/cms.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="header" class="navbar" style="border-radius: 0px;">
+        <a href="/" style="position:relative;"><img src="../static/images/logo.png" class="fl ml50" style="margin-top:8px;"></a>
+        <ul class="navbar-nav ml150">
+          <li id="nav_1"><a href="/">稿源库</a></li>
+          <li id="nav_2" class="active"><a href="/selected">已选稿</a></li>
+          <li id="nav_3"><a href="/release">发稿库</a></li>
+        </ul>
+  
+        <ul class="navbar-nav fr">
+            <li style="width:100px;"><a href="/" class="black">欢迎，郭珊</a></li>
+  			<li style="text-align: left;font-weight:bold;"><a href="/logout" class="black">【退出】</a></li>        
+        </ul>
+    </div>
+    <div id="selected-nav">
+    	<div class="delete-lib"><button class="delete-btn" id="deleteBtn">清除稿件</button></div>
+        <div class="selected-nav-content">
+            <a id="jk" class="{%if group == 21%}current {%else%} current1 {%end%}" href="#" data-gid="21">健康({{selected["jk"]}})</a>
+            <a id="kj" class="{%if group == 4%}current {%else%} current1 {%end%}" href="#" data-gid="4">科技({{selected["kj"]}})</a>
+            <a id="cj" class="{%if group == 3%}current {%else%} current1 {%end%}" href="#" data-gid="3">财经({{selected["cj"]}})</a>
+            <a id="sh" class="{%if group == 9%}current {%else%} current1 {%end%}" href="#" data-gid="9">生活({{selected["sh"]}})</a>
+            <a id="yl" class="{%if group == 5%}current {%else%} current1 {%end%}" href="#" data-gid="5">娱乐({{selected["yl"]}})</a>
+            <a id="jy" class="{%if group == 8%}current {%else%} current1 {%end%}" href="#" data-gid="8">教育({{selected["jy"]}})</a>
+            <a id="xz" class="{%if group == 22%}current {%else%} current1 {%end%}" href="#" data-gid="22">星座({{selected["xz"]}})</a>
+            <a id="mt" class="{%if group == 11%}current {%else%} current1 {%end%}" href="#" data-gid="11">美图({{selected["mt"]}})</a>
+        </div>
+        <div class="total-lib">
+        	<span>总稿件：</span>
+        	<span class="count-lib">{{selected["all"]}}</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="content" class="content">
+        <div class="content-left">
+          <table id="sourceTable" class="tables table">
+            <thead>
+              <tr class="thead">
+                <th style="width:250px;" class="">标题</th>
+                <th style="width:150px;" class="">选稿</th>
+                <th style="width:105px;" class="">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            	
+            	{%for new in news%}
+                      <tr class="" data-newsid="{{new['NewsID']}}">
+                        <td>
+                        	【{{new["ContentType"]}}】    {{new["Title"]}}
+                        </td>
+                        <td class="center">{{new["Date"]}}</td>
+                        <td class="center hander">
+                            {% if new["State"]=="selected"%}
+                            <a class="btn cancels" href="#">撤销</a>
+                            {% elif new["State"]==""%}
+                            <a class="btn" href="#" style="text-decoration: line-through; color:#D7D7D7;">已撤销</a>
+                            {%end%}
+                            {% if new["Top"]=="yes"%}
+                            <a class="btn top" href="#" style="margin-left:5px;">已置顶</a>
+                            {% elif new["Top"]==""%}
+                            <a class="btn untop" href="#" style="margin-left:5px;">置顶</a>
+                            {%end%}
+                        </td>
+                      </tr>
+                {%end%}
+              
+            </tbody>
+          </table>
+          <div class="page" data-total="" data-index="" data-row="">
+	    	<ul>
+	    		<li class="{%if page == 1%}current{%end%}"><span>1</span></li>
+	    		<li class="{%if page == 2%}current{%end%}"><span>2</span></li>
+	    		<li class="{%if page == 3%}current{%end%}"><span>3</span></li>
+	    		<li class="{%if page == 4%}current{%end%}"><span>4</span></li>
+	    		<li class="{%if page == 5%}current{%end%}"><span>5</span></li>
+	    		<li class="{%if page == 6%}current{%end%}"><span>6</span></li>
+	    		<li class="{%if page == 7%}current{%end%}"><span>7</span></li>
+	    		<li class="{%if page == 8%}current{%end%}"><span>8</span></li>
+	    		<li class="{%if page == 9%}current{%end%}"><span>9</span></li>
+	    		<li class="{%if page == 10%}current{%end%}"><span>10</span></li>
+	    	</ul>
+	    </div>
+       </div>
+       <div class="content-right">
+        {%for new in news%}
+          <div class="article" id="{{new['NewsID']}}" style="display:none;">
+            <div class="titles">{{new['Title']}}</div>
+            <div class="date">{{new['Date']}}</div>
+
+            <div class="imgs">
+                {%for pic in new['Pictures']%}
+                <span class="floor_imgs">
+                    <img src="{{pic['Url']}}" height="110" width="148"alt="">
+                </span>
+                {%end%}
+            </div>
+            <!---->
+            <div class="clearfix"></div>
+            <div class="cont">
+                {{new['Content']}}
+            </div>
+            <div class="button-center">
+                {% if new["State"]=="selected"%}
+                <button class="btn btn-warning btn-selected">撤销</button>
+                 {% elif new["State"]==""%}
+                 <button class="btn btn-warning btn-selected" disabled="disabled">已撤销</button>
+                {%end%}
+            </div>
+          </div>
+         {%end%}
+       </div>
+       <div class="clearfix"></div>
+    </div>
+	<div class="dialog1">
+    	<div class="title">
+    		<span class="delete">×</span>
+    	</div>
+    	<div class="content">
+    		<div class="warn-img"></div>
+    		<div class="warn-content">
+    			<p>
+    				清除“已选稿”中的内容？
+				</p>
+    		</div>
+    		<div class="clearfix"></div>
+    	</div>
+    	<div class="bottom">
+    		<button id="toDelete" class="btn btn-default"><span>清除内容</span></button>
+    		<button id="toCancel" class="btn btn-warning"><span>取消</span></button>
+    	</div>
+    </div>
+	<div class="dialog2">
+    	<div class="title">
+    		<span class="delete">×</span>
+    	</div>
+    	<div class="content">
+    		<div class="warn-img"></div>
+    		<div class="warn-content">
+    			<p>
+    				你真的要清除“已选稿”中的内容？
+				</p>
+    		</div>
+    		<div class="clearfix"></div>
+    	</div>
+    	<div class="bottom">
+    		<button id="toDeleteAgain" class="btn btn-default"><span>清除内容</span></button>
+    		<button id="toCancelAgain" class="btn btn-warning"><span>取消</span></button>
+    	</div>
+    </div>  
+    <div id="maskLayer" style="background-color: rgb(0, 0, 0); opacity: 0.4; top: 0px; left: 0px; position: absolute; z-index: 8000; 
+    	height: 753px; width: 1263px; background-position: initial initial; background-repeat: initial initial;display:none;"></div>
+	<script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        	$("#deleteBtn").click(function(){ //注册“清除全部”按钮相应事件
+        		$("#maskLayer").show();
+        		var dialog = "dialog1";
+        		showDialog(dialog);
+        		$(".dialog1").show(); //显示提示对话框
+        	});
+        	$(".delete").click(function(){
+        		$(".dialog1").hide();
+        		$("#maskLayer").hide();
+        	});
+        	$(window).resize(function() {//页面窗口大小改变事件
+                if (!$(".dialog1").is(":visible")) {
+                    return;
+                }
+                showDialog("dialog1"); //设置提示对话框的Top与Left
+            });
+            $("#toDelete").click(function(){
+            	$(".dialog1").hide();
+            	showDialog("dialog2");
+            	$(".dialog2").show();
+            });
+            $("#toDeleteAgain").click(function(){
+            	$(".dialog2").hide();
+            	$("#maskLayer").hide();
+                $.ajax({
+                type: "POST",
+                url: "http://106.185.28.67:8888/entity/released",
+                data: {},
+                dataType: "json",
+                success: function(data){
+                    alert("已经清除选中稿件！");
+                    window.location.reload();
+                }
+                });
+            });
+            $("#toCancel").click(function(){
+            	$(".dialog1").hide();
+            	$("#maskLayer").hide();
+            });
+            $("#toCancelAgain").click(function(){
+            	$(".dialog2").hide();
+            	$("#maskLayer").hide();
+            });
+        	/*
+            *根据当前页面与滚动条位置，设置提示对话框的Top与Left
+            */
+            function showDialog(cla) {
+            	var dia = "." + cla;
+                var objW = $(window); //当前窗口
+                var objC = $(dia); //对话框
+                var brsW = objW.width();
+                var brsH = objW.height();
+                var sclL = objW.scrollLeft();
+                var sclT = objW.scrollTop();
+                var curW = objC.width();
+                var curH = objC.height();
+                //计算对话框居中时的左边距
+                var left = sclL + (brsW - curW) / 2;
+                //计算对话框居中时的上边距
+                var top = sclT + (brsH - curH) / 2;
+                //设置对话框在页面中的位置
+                objC.css({ "left": left, "top": top });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+        //Tab切换 - jQuery
+        $(".selected-nav-content a").on("click", function(){
+            //$(this).removeClass("current1").addClass("current");
+            var groupId = $(this).attr("data-gid");
+            var len = $(".page li").length, page;
+            
+            //获取页码
+            for(var i=0; i<len; i++){ 
+                if($(".page li").eq(i).hasClass("current")){
+                    page = i + 1;
+                    break;
+                }
+            }
+            var URL="http://106.185.28.67:8888/selected" + "?group=" + groupId + "&page=" + page;
+            window.location.href=URL;
+        });
+        
+        //点击左侧列表，显示右边内容
+        $(".content-right").children(".article").eq(0).show(); //默认显示第一个
+        $('tbody tr').on('click', function(){
+            $(this).siblings('tr').removeAttr("style");
+            $(this).css("background-color","#d0effe");
+            var newId = $(this).attr("data-newsid");
+            $("#"+newId).siblings().hide();
+            $("#"+newId).show();
+        });
+        
+        //  点击翻页
+        $(".page li").on("click", function(){
+            //var groupId = 1;
+            var groupId = $(".selected-nav-content .current").attr("data-gid");
+            var page = $(this).children("span").text();
+            var URL="http://106.185.28.67:8888/selected" + "?group=" + groupId + "&page=" + page;
+            window.location.href=URL;
+        })
+        
+         //切换选稿与已选稿状态
+        $(".cancels").on("click", function(){
+            var _this = $(this);
+            var newsId = $(this).parent().parent().attr("data-newsid");
+            $.ajax({
+                type: "POST",
+                url: "http://106.185.28.67:8888/entity/unselect",
+                data: {newsid : newsId},
+                dataType: "json",
+                success: function(data){
+                    _this.html('<a class="btn" href="#" style="margin-right:5px;text-decoration: line-through; color:#D7D7D7;">已撤销</a>');
+                    _this.parent().parent().addClass('diss');
+                    $("#"+newsId).find("button").html('已撤销');
+                    $("#"+newsId).find("button").attr("disabled","disabled"); 
+                    
+                }
+            });
+        })
+        
+        //切换content里的选稿与已选稿状态
+        $(".btn-warning").on("click", function(){
+            var _this = $(this);
+            var newsId = $(this).parent().parent().attr("id");
+            var len = $("#sourceTable").find('tbody > tr').length;
+            $.ajax({
+                type: "POST",
+                url: "http://106.185.28.67:8888/entity/unselect",
+                data: {newsid : newsId},
+                dataType: "json",
+                success: function(data){
+                    
+                    _this.html('已撤销');
+                    _this.attr("disabled","disabled"); 
+                    for(var i=0; i<len; i++){ 
+                        if($("tbody tr").eq(i).attr("data-newsid")==newsId){
+                            //alert(i);
+                            $("tbody tr").eq(i).addClass('diss');
+                            $("tbody tr").eq(i).find("a:first-child").html('<a class="btn" href="#" style="margin-right:5px;text-decoration: line-through; color:#D7D7D7;">已撤销</a>');
+                        }
+                    }
+                    
+                }
+            });
+        })
+        
+        //置顶
+        $(".untop").on("click", function(){
+            var _this = $(this);
+            var newsId = $(this).parent().parent().attr("data-newsid");
+            $.ajax({
+                type: "POST",
+                url: "http://106.185.28.67:8888/entity/top",
+                data: {newsid : newsId},
+                dataType: "json",
+                success: function(data){
+                    _this.html('已置顶');
+                    _this.removeClass("untop");
+                    _this.addClass("top");
+                    window.location.reload();
+                }
+            });
+        })
+        
+        //未置顶
+        $(".top").on("click", function(){
+            var _this = $(this);
+            var newsId = $(this).parent().parent().attr("data-newsid");
+            $.ajax({
+                type: "POST",
+                url: "http://106.185.28.67:8888/entity/untop",
+                data: {newsid : newsId},
+                dataType: "json",
+                success: function(data){
+                    _this.html('置顶');
+                    _this.removeClass("top");
+                    _this.addClass("untop");
+                    window.location.reload();
+                }
+            });
+        })
+        })
+    </script>
+  </body>
+</html>

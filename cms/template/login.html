@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎回来</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/css/cms.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background: #ffcc33;">
+    <div class="content">
+    	<div class="main-content">
+    		<div class="row">
+    			<div class="index_logo"></div>
+    		</div>
+    		<div class="row main_title">
+    			<p class="text-center">航空PAD内容管理平台</p>
+    		</div>
+            <div>
+            <h3 class="warning" style="margin:70px 0 10px 0;">&nbsp;{{msg}}</h3>
+            </div>
+    		<form id="user_login_form" class="form-horizontal mt10" role="form" action="/user/login" method="post">
+					{% module xsrf_form_html() %}
+    			<div class="form-group">
+    				<label for="inputName" class="control-label login-font">用户名</label>
+    				<div class="input-div">
+    					<input name="username" type="text" class="form-control user-input" id="inputName" placeholder="请输入用户名">
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<label for="inputPasswd" class="control-label login-font">密&nbsp;&nbsp;&nbsp;码</label>
+    				<div class="input-div">
+    					<input name = "password" type="password" class="form-control user-input" id="inputPasswd" placeholder="请输入密码">
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<div class="col-sm-12 col-xs-12">
+    					<span id="warning" class="warning"></span>
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<div class="col-sm-offset-5 col-sm-4 col-xs-offset-5 col-xs-4">
+                        <input type="submit" class="btn btn-success btn-login" style="">
+    					<!--<button type="submit" class="btn btn-success btn-login" id="loginSubmit"><span class="login-font">确定</span></button>-->
+    				</div>
+    			</div>
+    		</form>
+    	</div>
+    </div>
+
+	<script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>

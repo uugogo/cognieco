@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>稿源库</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/source.css" rel="stylesheet">
+    <link href="../static/css/cms.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="header" class="navbar" style="border-radius: 0px;">
+        <a href="/" style="position:relative;"><img src="../static/images/logo.png" class="fl ml50" style="margin-top:8px;"></a>
+        <ul class="navbar-nav ml150">
+          <li id="nav_1" class="active"><a href="/">稿源库</a></li>
+          <li id="nav_2"><a href="/selected">已选稿</a></li>
+          <li id="nav_3"><a href="/release">发稿库</a></li>
+        </ul>
+  
+        <ul class="navbar-nav fr">
+            <li style="width:100px;"><a href="/" class="black">欢迎，user</a></li>
+  			<li style="text-align: left;font-weight:bold;"><a href="/logout" class="black">【退出】</a></li>        
+        </ul>
+    </div>
+    <div id="nav">
+        <div class="nav-content cl">
+            <a id="jk" class="{%if group == 21%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="21">健康({{selected["jk"]}})</a>
+            <a id="kj" class="{%if group == 4%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="4">科技({{selected["kj"]}})</a>
+            <a id="cj" class="{%if group == 3%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="3">财经({{selected["cj"]}})</a>
+            <a id="sh" class="{%if group == 9%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="9">生活({{selected["sh"]}})</a>
+            <a id="yl" class="{%if group == 5%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="5">娱乐({{selected["yl"]}})</a>
+            <a id="jy" class="{%if group == 8%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="8">教育({{selected["jy"]}})</a>
+            <a id="xz" class="{%if group == 22%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="22">星座({{selected["xz"]}})</a>
+            <a id="mt" class="{%if group == 11%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="11">美图({{selected["mt"]}})</a>
+            <a id="a1" class="{%if group == 1%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="1">a1({{selected["a1"]}})</a>
+            <a id="a2" class="{%if group == 2%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="2">a2({{selected["a2"]}})</a>
+            <a id="a6" class="{%if group == 6%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="7">a6({{selected["a6"]}})</a>
+            <a id="a7" class="{%if group == 7%}current {%else%} current1 {%end%}" href="javascript:;" data-gid="7">a7({{selected["a7"]}})</a>
+        </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="content" class="content">
+        <div class="content-left">
+          <table id="sourceTable" class="table tables">
+            <thead>
+              <tr class="thead">
+                <th style="width:290px;" class="">标题</th>
+                <th style="width:150px;" class="">选稿</th>
+                <th style="width:65px;" class="">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              {%for new in news%}
+                   {% if new["State"]=="selected"%}
+                      <tr class="diss" data-newsid="{{new['NewsID']}}">
+                        <td>
+                        	【{{new["ContentType"]}}】    {{new["Title"]}}
+                        </td>
+                        <td class="center">{{new["Date"]}}</td>
+                        <td class="center hander"><a style="text-decoration: line-through; color:#D7D7D7;" class="btn" href="javascript:;" disabled="disabled">已选稿</a></td>
+                      </tr>
+                   {% elif new["State"]==""%}
+                      <tr data-newsid="{{new['NewsID']}}">
+                        <td>
+                        	【{{new["ContentType"]}}】    {{new["Title"]}}
+                        </td>
+                        <td class="center">{{new["Date"]}}</td>
+                        <td class="center hander"><a class="btn btn-select" href="javascript:;">选稿</a> </td>
+                      </tr>
+                    {% elif new["State"]=="released"%}
+                      <tr class="diss" data-newsid="{{new['NewsID']}}">
+                        <td>
+                        	【{{new["ContentType"]}}】    {{new["Title"]}}
+                        </td>
+                        <td class="center">{{new["Date"]}}</td>
+                        <td class="center hander"><a style="text-decoration: line-through; color:#D7D7D7;" class="btn" href="javascript:;" disabled="disabled">已发稿</a></td>
+                      </tr>
+                    {% end %}
+              {%end%}
+
+            </tbody>
+          </table>
+          <div class="page" style="display:none">
+	    	<ul>
+	    		<li class="{%if page == 1%}current{%end%}"><span>1</span></li>
+	    		<li class="{%if page == 2%}current{%end%}"><span>2</span></li>
+	    		<li class="{%if page == 3%}current{%end%}"><span>3</span></li>
+	    		<li class="{%if page == 4%}current{%end%}"><span>4</span></li>
+	    		<li class="{%if page == 5%}current{%end%}"><span>5</span></li>
+	    		<li class="{%if page == 6%}current{%end%}"><span>6</span></li>
+	    		<li class="{%if page == 7%}current{%end%}"><span>7</span></li>
+	    		<li class="{%if page == 8%}current{%end%}"><span>8</span></li>
+	    		<li class="{%if page == 9%}current{%end%}"><span>9</span></li>
+	    		<li class="{%if page == 10%}current{%end%}"><span>10</span></li>
+	    	</ul>
+	    </div>
+		
+		<style>
+			.pager{text-align:center;font-size:14px;height:40px;line-height:33px;clear:both;}
+			.pager span,.pager a{margin:0 1px;padding:10px 15px;background:#EEE;display:inline-block;line-height:33px;padding:0 13px;font-family:'microsoft yahei',verdana,arial}
+			.pager .current{background:#FE9200;color:#FFF}
+			.pager span.prev,.pager span.next{background:#EEE;color:#999;display:none}
+			.pager a{color:#666}
+			.pager a:hover{background-color:#ccc;text-decoration:none}
+			.pager a:active{background-color:#ccc;text-decoration:none}
+			.pager span{color:#999}
+			.pager span,.pager a{*display:inline}
+			.pager span.cur{background:#FE9200;color:#fff;}
+		</style>
+        <div id="pager" class="pager" data-total="{{selected['gtotal']}}" data-index="{{page}}" data-row="10"></div>
+       </div>
+       <div class="content-right">
+       	{%for new in news%}
+          <div class="article" id="{{new['NewsID']}}" style="display:none;">
+            <div class="titles" >
+                <a href="{{new['Url']}}" target="_blank">{{new['Title']}}
+            </a></div>
+            <div class="date">{{new['Date']}}</div>
+            <div class="imgs">
+            	{%for pic in new['Pictures']%}
+                <span class="floor_imgs">
+                    <img src="{{pic['Url']}}" height="110" width="148"alt="">
+                </span>
+                {%end%}
+            </div>
+            <!---->
+            <div class="clearfix"></div>
+            <div class="cont">
+                {{new['Content']}}
+            </div>
+            <div class="button-center">
+            	{% if new["State"]==""%}
+            	<button class="btn btn-success btn-selected">选择</button>
+            	 {% elif new["State"]=="selected"%}
+            	 <button class="btn btn-success btn-selected" disabled="disabled">已选择</button>
+            	{%end%}
+            </div>
+          </div>
+         {%end%}
+       </div>
+       <div class="clearfix"></div>
+    </div>
+	<script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/jquery.pagination.js"></script>
+    <script>
+    /*
+    window.onload = function(){
+    	// tab切换
+        var Tags = document.getElementById('nav').getElementsByTagName('a');
+        var TagsCnt = document.getElementById('content').getElementsByTagName('table');
+        var len = Tags.length;
+        var flag = 0; //修改默认值
+        for (i = 0; i < len; i++) {
+            Tags[i].value = i;
+            TagsCnt[i].className = 'table tables undis_zzjs_net ';
+            Tags[i].onclick = function() { 
+                change_zzjs(this.value); 
+                
+            };
+        }
+        Tags[flag].className = 'current';
+        TagsCnt[flag].className = 'table tables dis_zzjs_net ';
+        function change_zzjs(v) {
+        	var URL="http://127.0.0.1:8888" + "?group=" + 2 + "&page=" + 1;
+        	window.location.href=URL;
+            Tags[flag].className = 'current1';
+            TagsCnt[flag].className = 'undis_zzjs_net table tables';
+            flag = v;
+            Tags[v].className = 'current';
+            TagsCnt[v].className = 'dis_zzjs_net table tables';
+        }
+     } 
+     */
+    </script>
+    <script>
+    $(document).ready(function(){
+    	//Tab切换 - jQuery
+    	$(".nav-content a").on("click", function(){
+    		//$(this).removeClass("current1").addClass("current");
+    		var groupId = $(this).attr("data-gid");
+    		/*var len = $(".page li").length, page;
+    		
+    		//获取页码
+    		for(var i=0; i<len; i++){ 
+    			if($(".page li").eq(i).hasClass("current")){
+    				page = i + 1;
+    				break;
+    			}
+    		}
+			*/
+    		var URL="http://127.0.0.1:8888" + "?group=" + groupId + "&page=1";// + page;
+        	window.location.href=URL;
+    	});
+    	
+		//点击类别，右侧默认显示列表第一个
+		$(".nav-content").children("a").on('click', function(){
+			var id = $(this).attr('id');
+			var tab_id = id + "_tab";
+			var date = $("#"+tab_id).children("tbody").children("tr").eq(0).attr('data-date');
+			
+			var content = $("#"+tab_id).children("tbody").children("tr").eq(0).attr('data-content');
+			
+			var title = $("#"+tab_id).children("tbody").children("tr").eq(0).attr('data-title');
+			$(".article .titles").html(title);
+			$(".article .date").html(date);
+			$(".article .cont").html(content);
+		});
+        
+        //点击左侧列表，显示右边内容
+        $(".content-right").children(".article").eq(0).show(); //默认显示第一个
+        $('tbody tr').on('click', function(){
+        	$(this).siblings('tr').removeAttr("style");
+            $(this).css("background-color","#d0effe");
+        	var newId = $(this).attr("data-newsid");
+        	$("#"+newId).siblings().hide();
+        	$("#"+newId).show();
+        });
+        
+        //切换选稿与已选稿状态
+        $(".btn-select").on("click", function(){
+        	var _this = $(this);
+        	var newsId = $(this).parent().parent().attr("data-newsid");
+        	$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:8888/entity/select",
+				data: {newsid : newsId},
+				dataType: "json",
+				success: function(data){
+					_this.html('<a style="text-decoration: line-through;color:#D7D7D7;" class="btn" href="javascript:;" disabled="disabled">已选稿</a>');
+					_this.parent().parent().addClass('diss');
+					$("#"+newsId).find("button").html('已选择');
+					$("#"+newsId).find("button").attr("disabled","disabled"); 
+					
+				}
+			});
+		})
+		//切换content里的选稿与已选稿状态
+        $(".btn-success").on("click", function(){
+        	var _this = $(this);
+        	var newsId = $(this).parent().parent().attr("id");
+        	var len = $("#sourceTable").find('tbody > tr').length;
+        	$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:8888/entity/select",
+				data: {newsid : newsId},
+				dataType: "json",
+				success: function(data){
+					
+					_this.html('已选择');
+					_this.attr("disabled","disabled"); 
+					for(var i=0; i<len; i++){ 
+		    			if($("tbody tr").eq(i).attr("data-newsid")==newsId){
+		    				//alert(i);
+		    				$("tbody tr").eq(i).addClass('diss');
+		    				$("tbody tr").eq(i).find("a").html('<a style="text-decoration: line-through;color:#D7D7D7;" class="btn" href="javascript:;" disabled="disabled">已选稿</a>');
+		    			}
+		    		}
+					
+				}
+			});
+		})
+        
+        //  点击翻页
+        $(".page li").on("click", function(){
+        	//var groupId = 1;
+        	var groupId = $("#nav .current").attr("data-gid");
+        	
+        	var page = $(this).children("span").text();
+        	var URL="http://127.0.0.1:8888" + "?group=" + groupId + "&page=" + page;
+        	window.location.href=URL;
+        	/*$.ajax({
+        		type: "GET",
+        		url: "http://127.0.0.1:8888",
+        		data: {group: groupId, page: page},
+        		success: function(data){
+        			window.location.href=URL;
+        		}
+        	});
+        */	
+        });
+        
+        
+ 	});
+	
+	
+    (function () {
+		//初始化第一个选中
+		$("#sourceTable").find("tbody tr").eq(0).css("background-color", "rgb(208, 239, 254)");
+		//以下为分页相关代码
+        var pager = $("#pager");
+        var total = parseInt(pager.attr("data-total"));
+        var index = parseInt(pager.attr("data-index")) - 1;
+        var row = parseInt(pager.attr("data-row"));
+        var groupId = $("#nav .current").attr("data-gid");
+
+        function pageSelectCallback(page) {
+            window.location.href = "?group=" + groupId + "&page=" + (page + 1);
+        }
+
+        var opt = {
+            current_page: index,
+            pageSize: row,
+            link_to: 'javascript:void(0)',
+            num_display_entries: 5,
+            num_edge_entries: 1,
+            callback: pageSelectCallback,
+            prev_text: "上一页",
+            next_text: "下一页",
+            init_load: false
+        };
+        pager.pagination(total, opt);
+    })();
+    </script>
+
+
+
+  </body>
+</html>

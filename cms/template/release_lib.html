@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布库</title>
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/source.css" rel="stylesheet">
+    <link href="../static/css/cms.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="release-content">
+	    <div id="header" class="navbar" style="border-radius: 0px;">
+	        <a href="/" style="position:relative;"><img src="../static/images/logo.png" class="fl ml50" style="margin-top:8px;"></a>
+	        <ul class="navbar-nav ml150">
+	          <li id="nav_1"><a href="/">稿源库</a></li>
+	          <li id="nav_2"><a href="/selected">已选稿</a></li>
+	          <li id="nav_3" class="active"><a href="/release">发稿库</a></li>
+	        </ul>
+	  
+	        <ul class="navbar-nav fr">
+	            <li style="width:100px;"><a href="/" class="black">欢迎，郭珊</a></li>
+	  			<li style="text-align: left;font-weight:bold;"><a href="/logout" class="black">【退出】</a></li>        
+	        </ul>
+	    </div>
+	    <div class="table-responsive release-content">
+	    	<table class="table release-tab">
+	    		<thead>
+		    		<tr class="release-th">
+		    			<th style="width:60%;">月刊</th>
+		    			<th style="width:25%;">生成日期</th>
+		    			<th style="width:15%;">操作</th>
+		    		</tr>
+	    		</thead>
+	    		<tbody>
+                    {%for product in products%}
+                    <tr>
+	    				<td><div class="proTitle">{{product["title"]}}</div></td>
+	    				<td><div class="proDate">{{product["date"]}}</div></td>
+	    				<td>
+                            {% if product["url"]!="" %}
+	    					<span class="disabled">已生成</span>
+	    					<span class="download"><a href="{{product['url']}}">下载</a></span>
+                            {% else %}
+                            <span class="makeup">生成</span>
+	    					<span class="download disabled">下载</span>
+                            {%end%}
+	    				</td>
+	    			</tr>
+                    {%end%}
+	    		</tbody>
+	    	</table>
+	    </div>
+	    <!--<div class="pager">-->
+	    	<!--<ul>-->
+	    		<!--<li>1</li>-->
+	    		<!--<li>2</li>-->
+	    		<!--<li>3</li>-->
+	    		<!--<li>……</li>-->
+	    		<!--<li>7</li>-->
+	    	<!--</ul>-->
+	    <!--</div>-->
+    </div>
+	<script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script>
+    	$(document).ready(function(){
+    		$(".makeup").on("click", function(){
+    			$(this).addClass("disabled");
+    			var title = $(".proTitle").html();
+    			var date = $(".proDate").html();
+    			$.ajax({
+					type: "POST",
+					url: "http://106.185.28.67:8888/package",
+					data: {title: title, date: date},
+					dataType: "json",
+					success: function(data){
+                        window.location.reload();
+					}
+				});
+    		})
+    	});
+    </script>
+  </body>
+</html>

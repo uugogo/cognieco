@@ -1,0 +1,364 @@
+﻿
+/*登陆页*/
+.content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+@media (min-width: 768px) {
+	.main-content {
+		width:450px; 
+		height:400px; 
+		background-color:#ffcc33; 
+		margin:40px auto;
+	}
+}
+@media (min-width: 992px) {
+	.main-content {
+		width: 100%; 
+		height: 100%; 
+		background-color:#ffcc33; 
+		margin:50px auto;
+	}
+}
+@media (min-width: 1200px) {
+	.main-content {
+		width:100%; 
+		height: 100%; 
+		 
+		margin:0 auto;
+	}
+}
+.index_logo {
+	background:url(../images/logo-big.png) no-repeat 0 0; 
+	height:60px; 
+	margin-top:40px; 
+	margin-left:60px;
+}
+.main_title {
+	margin-top: 35px;
+	margin-bottom: 10px; 
+	height:40px; 
+	line-height:40px; 
+	font-family:"微软雅黑"; 
+	font-size:30px; 
+	font-weight:normal; 
+	font-style:normal;
+	color:#333;
+}
+.login-font {
+	color:#333;
+	font-family: 微软雅黑;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    margin-left: 500px;
+    margin-right: 10px;
+    line-height: 36px;
+    padding-top: 0;
+}
+.mt10 {margin-top:10px;}
+.btn-login{
+	width: 45%; 
+	height:40px;
+	width: 210px;
+	font-family: 微软雅黑;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.user-input {
+    width: 300px;
+}
+.input-div {
+    display: inline-block;
+}
+.btn-login span {
+	color: #FFFFFF;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.warning{
+	font-family: 微软雅黑;
+    font-size: 14px;
+    color: red;
+    text-align: center;
+    display: block;
+}
+
+/* 发稿库 */
+@media (min-width: 768px) {
+	.release-content {
+		position: relative;
+		width: auto;
+		padding: 0px;
+	}
+}
+@media (min-width: 992px) {
+	.release-content {
+		position: relative;
+		width: auto;
+		padding: 0px;
+	}
+}
+@media (min-width: 1200px) {
+	.release-content {
+		position: relative;
+		width: auto;
+		padding: 0px;
+	}
+}
+.release-tab {
+	position: relative;
+	padding: 0 10px;
+	width: 100%;
+	margin: 0 10px;
+}
+.release-tab > thead > tr > th, .release-tab > tbody > tr > td{
+	border: 0;
+}
+.release-tab > tbody > tr:last-child {border-bottom:2px solid #ccc;}
+.release-tab > thead > tr > th, .release-tab > tbody > tr > td{
+	text-align: center;
+	font-family: 微软雅黑;
+	font-size: 13px;
+}
+.release-tab>tbody>tr>td:first-child {
+	text-align:left;
+	padding-left: 25px;
+}
+.release-th {
+	position: relative;
+	height: 40px;
+	width: auto;
+	background-color: #f2f2f2;
+	border-top: 0;
+}
+.release-tab > tbody > tr > td > div {
+    word-wrap: break-word;
+}
+.release-tab > tbody > tr:nth-child(odd) > td{
+	background-color: #f9f9f9;
+}
+.release-tab .disabled {
+	color: #ccc;
+}
+.release-tab > tbody > tr > td span {cursor: pointer;}
+.release-tab > tbody > tr > td span:first-child {
+	position: relative;
+	display: inline-block;
+	width: 40%;
+	text-align:right;
+	padding-right: 10%;
+}
+.release-tab .proTitle {
+	width: 500px;
+}
+.page {
+	position: relative;
+	width: 100%;
+	margin: 10px auto;
+	height: 25px;
+	margin-left: 80px;
+}
+.page ul li {
+    list-style: none;
+    float: left;
+	position: relative;
+	width: 5%;
+	height: 25px;
+	border: 1px solid #c9c9c9;
+	padding: 3px 3px;
+	margin-right: 10px;
+	cursor: pointer;
+	text-align: center;
+}
+.page ul li:hover{
+    background: #6699CC;
+}
+.page ul li.current {
+    border: 0;
+}
+
+/*已选稿*/
+#selected-nav{
+	width:100%;
+	min-width:98%;
+	margin:0 auto;
+	height:40px;
+	background-color: #fafafa;
+}
+.delete-lib {
+	float: left;
+	display: inline-block;
+	margin: 8px 0 8px 15px;
+	width: 80px;
+	height: 20px;
+}
+.delete-btn {
+	display: inline-block;
+	width: 80px;
+	height: 25px;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 0 12px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+	line-height: 25px;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #ffcccc;
+}
+.selected-nav-content{
+	background-color:#fafafa;
+	height:40px;
+	float: left;
+	margin-left: 175px;
+}
+.selected-nav-content a {
+	line-height:40px;
+	padding:3px 10px;
+	color: #66CCFF;
+	font-family: 微软雅黑;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	margin-right:30px;
+}
+
+.selected-nav-content a.current {
+	background-color: #6699cc;
+	color: #FFFFFF;
+	font-weight:bold;
+}
+.total-lib {
+	float: right;
+	margin: 3px 30px 3px 0;
+	font-family:微软雅黑;
+	font-size:13px;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none;
+	color:#CCCCCC; 
+}
+.total-lib span {
+	line-height: 40px;
+}
+.total-lib  .count-lib {
+	color: #6cf;
+	font-weight: bold;
+}
+/*弹出清除确认面板*/
+.dialog1, .dialog2 {
+	width:365px; 
+	height:205px; 
+	border:2px solid #fff; 
+	position:absolute; 
+	z-index:9999;
+	display: none;
+	background: #fff;
+}
+.dialog1 .title, .dialog2 .title {
+	background-color:#333; 
+	width:360px; 
+	height:30px;
+	margin-bottom: 35px; 
+}
+.dialog1 .title .delete, .dialog2 .title .delete {
+	font-family:微软雅黑; 
+	font-size:24px; 
+	font-weight:bold; 
+	font-style:normal; 
+	text-decoration:none; 
+	color:#FFFFFF;
+	float:right;
+	padding-right: 10px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.dialog1 .content, .dialog2 .content {
+	background-color: #fff;
+	height:55px;
+	width: 360px;
+	padding: 0 30px;
+}
+.dialog1 .content .warn-img, .dialog2 .content .warn-img {
+	float:left;
+	width: 30px;
+	height: 30px;
+	background: url(../images/warn-img.png) no-repeat 0 0;
+	margin-right: 10px;
+}
+.dialog1 .content .warn-content p, .dialog2 .content .warn-content p{
+	font-family:微软雅黑;
+	font-size:20px;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none;
+	color:#666666;
+}
+.dialog1 .bottom, .dialog2 .bottom{
+	position: relative;
+	padding: 0 30px;
+	margin:10px auto;
+	background-color: #fff;
+}
+.dialog1 .bottom button, .dialog2 .bottom button {
+	width: 140px;
+	height: 35px;
+}
+.dialog1 .bottom button span, .dialog2 .bottom button span {
+	font-family:微软雅黑;
+	font-size:16px;
+	font-weight:bold;
+	font-style:normal;
+	text-decoration:none;
+	color:#666666;
+}
+
+
+.mask {
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+    top: 0;
+    left: 0;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+    /*display:none;*/
+    z-index:9998;
+    overflow: hidden;
+}
+
+.button-center {
+    position: relative;
+    margin-left: 200px;
+}
+.btn-selected {
+    width: 180px;
+    height: 35px;
+    padding: 6px 12px;
+    font-family:微软雅黑;
+    font-size:16px;
+    font-weight:bold;
+    font-style:normal;
+    text-decoration:none;
+    color:#fff;
+}
